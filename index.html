@@ -16,26 +16,36 @@
         /* Hintergrund und allgemeine Stile */
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #ffffff;
-            color: #333333;
+            color: #2C2C2C; /* Eleganterer Dunkelgrau-Ton statt Schwarz */
             line-height: 1.6;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image: linear-gradient(135deg, #f5f5f5 25%, transparent 25%), 
-                              linear-gradient(225deg, #f5f5f5 25%, transparent 25%), 
-                              linear-gradient(45deg, #f5f5f5 25%, transparent 25%), 
-                              linear-gradient(315deg, #f5f5f5 25%, #ffffff 25%);
-            background-position: 10px 0, 10px 0, 0 0, 0 0;
-            background-size: 20px 20px;
+            background-image: url('bilder/rosen-hintergrund.jpg'); /* Pfad zu Ihrem Rosenbild */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* Overlay für bessere Lesbarkeit */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* Halbtransparentes Weiß */
+            z-index: 1;
         }
 
         /* Container für den Inhalt */
         .container {
+            position: relative;
+            z-index: 2;
             text-align: center;
             padding: 40px;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.9); /* Leicht transparentes Weiß */
             border: 2px solid #eaeaea;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             border-radius: 10px;
@@ -48,14 +58,14 @@
             font-family: 'Playfair Display', serif;
             font-size: 3em;
             margin-bottom: 20px;
-            color: #222222;
+            color: #2C2C2C; /* Noch eleganteres Dunkelgrau */
         }
 
         /* Einleitender Paragraph */
         p {
             font-size: 1.2em;
             margin-bottom: 30px;
-            color: #555555;
+            color: #555555; /* Weicheres Grau für Fließtext */
         }
 
         /* Liste der Links */
@@ -80,6 +90,52 @@
             transform: scale(1.05);
         }
 
+        /* Footer mit Impressum und Datenschutz */
+        .footer {
+            margin-top: 20px;
+        }
+
+        .footer a {
+            color: #D4AF37;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            color: #BFA16A;
+            text-decoration: underline;
+        }
+
+        /* Cookie-Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            z-index: 1000;
+            display: none; /* Initial versteckt */
+        }
+
+        .cookie-banner button {
+            background-color: #D4AF37;
+            border: none;
+            padding: 10px 20px;
+            margin-left: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #333333;
+            font-weight: bold;
+        }
+
+        .cookie-banner button:hover {
+            background-color: #BFA16A;
+        }
+
         /* Responsive Design */
         @media (max-width: 600px) {
             h1 {
@@ -97,14 +153,38 @@
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="container">
-        <h1>Thx, ich bin Chokah!</h1>
-        <p>Hier sind einige Links:</p>
+        <h1>Thx, du möchtest mehr über Chokah erfahren!</h1>
+        <p>Hier sind einige unvergessliche Links:</p>
         <ul>
             <li><a href="https://www.instagram.com/chokah93/" target="_blank">Instagram</a></li>
             <li><a href="https://www.spotify.com/" target="_blank">Spotify</a></li>
             <li><a href="https://www.tiktok.com/@chokah93" target="_blank">TikTok</a></li>
         </ul>
+        <div class="footer">
+            <a href="impressum.html" target="_blank">Impressum</a> |
+            <a href="datenschutz.html" target="_blank">Datenschutz</a>
+        </div>
     </div>
+
+    <!-- Cookie-Banner -->
+    <div class="cookie-banner" id="cookie-banner">
+        <p>Diese Website verwendet Cookies, um Ihnen das beste Erlebnis zu bieten.</p>
+        <button onclick="acceptCookies()">Akzeptieren</button>
+    </div>
+
+    <script>
+        // Überprüfen, ob der Nutzer bereits Cookies akzeptiert hat
+        if (!localStorage.getItem('cookiesAccepted')) {
+            document.getElementById('cookie-banner').style.display = 'block';
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
+
